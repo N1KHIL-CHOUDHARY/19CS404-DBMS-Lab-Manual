@@ -167,7 +167,3 @@ WHERE JOB_ID like'%MAN';
 ## RESULT
 Thus, the SQL queries to implement DML commands have been executed successfully.
 
-## Module 2 Grade:
-
-<img width="1442" height="186" alt="image" src="https://github.com/user-attachments/assets/6a980fa3-29af-45f7-b44e-b7bf148dd595" />
-
