@@ -1,5 +1,8 @@
 # Experiment 4: Aggregate Functions, Group By and Having Clause
 
+## NAME: Nikhil H
+## REG.NO: 212224040219
+
 ## AIM
 To study and implement aggregate functions, GROUP BY, and HAVING clause with suitable examples.
 
@@ -38,291 +41,147 @@ HAVING condition;
 
 **Question 1**
 --
-What is the average dosage prescribed for each medication?
+-- How many appointments are scheduled for each patient?
 
-Sample tablePrescriptions Table
-```
-Medication     AvgDosage
--------------  ----------
-Ciprofloxacin  500.0
-Doxorubicin    60.0
-Ibuprofen      400.0
-Levothyroxine  50.0
-Lisinopril     10.0
-MMR            0.5
-Pending        0.0
-Prenatal vita  1.0
-Sertraline     50.0
-Topiramate     25.0
-```
-
-```
-SELECT
-  Medication,
-  AVG(Dosage) AS AvgDosage
-FROM
-  Prescriptions
-GROUP BY
-  Medication;
-
+```sql
+-- SELECT PatientID , count(AppointmentID) as TotalAppointments
+FROM Appointments 
+group by PatientID
+ORDER BY PatientID
 ```
 
 **Output:**
 
-
-![Screenshot 2025-04-29 171159](https://github.com/user-attachments/assets/cbf06455-04ba-4d64-899c-19b9f6285e48)
+![image](https://github.com/user-attachments/assets/c6fc55d9-d0f2-4bd5-9f37-031bfaa8a064)
 
 **Question 2**
 ---
-How many patients are there in each city?
-```
-Sample table: Patients Table
+-- What is the average duration of insurance coverage for patients covered by each insurance company? 
 
-Address     TotalPatients
-----------  -------------
-Berlin      3
-Chicago     4
-Mexico      3
-```
-```
-select Address,count(*)
-as TotalPatients
-from Patients
-group by Address
+```sql
+-- SELECT InsuranceCompany, AVG(enddate - startdate) AS AvgCoverageDurationDays
+FROM Insurance
+GROUP BY InsuranceCompany;
 ```
 
 **Output:**
 
-
-![Screenshot 2025-04-29 171804](https://github.com/user-attachments/assets/8d4957fe-fb4f-4c02-a28e-1f6c65c3430c)
-
-
+![image](https://github.com/user-attachments/assets/146996dc-b11b-4d32-a416-1363b749fc70)
 
 **Question 3**
 ---
-Write a SQL Query to find how many medications are prescribed for each patient?
+-- How many prescriptions were written in each frequency category (e.g., once daily, twice daily)? 
 
-Sample table:MedicalRecords Table
-```
-PatientID   AvgMedications
-----------  --------------
-4           5
-6           1
-7           1
-8           3
-
-```
-```
-SELECT PatientID,COUNT(*) AS 
-AvgMedications
-FROM MedicalRecords
-GROUP BY PatientID;
+```sql
+-- select Frequency, count(PatientID) as TotalPrescriptions
+FROM Prescriptions
+group by Frequency;
 ```
 
 **Output:**
 
-
-![Screenshot 2025-04-29 172124](https://github.com/user-attachments/assets/03cd9d50-06b5-4812-9c53-729d7557944f)
-
+![image](https://github.com/user-attachments/assets/c0bff40e-f88d-42bc-a8d2-a0790c66f765)
 
 **Question 4**
 ---
-Write a SQL query to find the maximum purchase amount.
+-- Write a SQL query to find the average salary of all employees?
 
-Sample table: orders
-```
-ord_no      purch_amt   ord_date    customer_id  salesman_id
-
-----------  ----------  ----------  -----------  -----------
-
-70001       150.5       2012-10-05  3005         5002
-
-70009       270.65      2012-09-10  3001         5005
-
-70002       65.26       2012-10-05  3002         5001
-```
-```
-SELECT
-  MAX(purch_amt) AS MAXIMUM
-FROM
-  orders;
+```sql
+-- SELECT AVG(income) AS Average_Salary 
+FROM employee;
 ```
 
 **Output:**
 
-
-![Screenshot 2025-04-29 172220](https://github.com/user-attachments/assets/3b0552ba-cb0f-47b2-a14f-4f41e3f13b8a)
-
-
+![image](https://github.com/user-attachments/assets/338edc65-45d5-4808-9499-9be884d9878a)
 
 **Question 5**
 ---
-Write a SQL query to find the total income of employees aged 40 or above.
+-- Write a SQL query that counts the number of unique salespeople. Return number of salespeople.
 
-Table: employee
-```
-name        type
-----------  ----------
-id          INTEGER
-name        TEXT
-age         INTEGER
-city        TEXT
-income      INTEGER
-
-```
-```
-SELECT
-  SUM(income) AS total_income
-FROM
-  employee
-WHERE
-  age >= 40;
+```sql
+-- SELECT count(distinct salesman_id) AS COUNT
+FROM orders;
 ```
 
 **Output:**
 
-
-![Screenshot 2025-04-29 172310](https://github.com/user-attachments/assets/7dd0627c-5b47-45cd-9da2-b4c8b2308c33)
-
+![image](https://github.com/user-attachments/assets/faf627ff-1d61-437a-be90-6a2c300b885c)
 
 **Question 6**
 ---
-Write a SQL query to find the number of employees whose age is greater than 32.
+-- Write a SQL query to return the total number of rows in the 'customer' table where the city is not Noida.
 
-Sample table: employee
-
-```
-SELECT
-  COUNT(*) AS COUNT
-FROM
-  employee
-WHERE
-  age > 32;
+```sql
+-- SELECT COUNT(id) AS COUNT FROM customer 
+WHERE city != 'Noida';
 ```
 
 **Output:**
 
-
-![Screenshot 2025-04-29 172421](https://github.com/user-attachments/assets/facbdbb0-4fdf-4680-a2f2-05496c32ebde)
+![image](https://github.com/user-attachments/assets/9cec0969-1b57-4d63-8520-ce9d54a168bc)
 
 **Question 7**
 ---
-Write a SQL query to find the average length of names for people living in Chennai?
+-- Write a SQL query to find What is the age difference between the youngest and oldest employee in the company.
 
-Table: customer
-```
-name        type
-----------  ----------
-id          INTEGER
-name        TEXT   
-city        TEXT
-email       TEXT
-phone       INTEGER
-```
-```
-SELECT
-  AVG(LENGTH(name)) AS avg_name_length
-FROM
-  customer
-WHERE
-  city = 'Chennai';
+```sql
+-- SELECT MAX(age) - MIN(age) AS age_difference 
+FROM employee;
 ```
 
 **Output:**
 
-
-![Screenshot 2025-04-29 172506](https://github.com/user-attachments/assets/d162dc9e-2f89-4e8d-ace5-ffa4b385b7bb)
-
+![image](https://github.com/user-attachments/assets/2db69714-9ff2-467e-970f-c1113a4801dd)
 
 **Question 8**
 ---
-Write the SQL query that accomplishes the grouping of data by joining date (jdate), calculates the maximum work hours for each date, and excludes dates where the maximum work hour is not greater than 12.
+--Write the SQL query that accomplishes the grouping of data by joining date (jdate), calculates the minimum work hours for each date, and excludes dates where the minimum work hour is not less than 10.
 
-Sample table: employee1
-```
-jdate       MAX(workhour)
-----------  -------------
-2004.0      15
-2006.0      15
-```
-```
-SELECT
-  jdate,
-  MAX(workhour) AS "MAX(workhour)"
-FROM
-  employee1
-GROUP BY
-  jdate
-HAVING
-  MAX(workhour) > 12;
+```sql
+-- SELECT jdate, MIN(workhour) 
+FROM employee1 
+GROUP BY jdate 
+HAVING MIN(workhour) < 10;
 ```
 
 **Output:**
 
-
-![Screenshot 2025-04-29 172603](https://github.com/user-attachments/assets/4f18be9a-1667-4bc1-825b-115d62e6f1c9)
-
+![image](https://github.com/user-attachments/assets/add35670-4fe4-46e8-8456-f140e3d683e3)
 
 **Question 9**
 ---
-Write the SQL query that achieves the grouping of data by occupation, calculates the total work hours for each occupation, and excludes occupations where the total work hour sum is not greater than 20.
+-- Write the SQL query that accomplishes the grouping of data by joining date (jdate), calculates the total work hours for each date, and excludes dates where the total work hour sum is not greater than 40.
 
-Sample table: employee1
-```
-occupation  SUM(workhour)
-----------  -------------
-Business    30
-Doctor      30
-Engineer    24
-Teacher     27
-```
-```
-SELECT
-  occupation,
-  SUM(workhour) AS "SUM(workhour)"
-FROM
-  employee1
-GROUP BY
-  occupation
-HAVING
-  SUM(workhour) > 20;
+```sql
+-- SELECT jdate, SUM(workhour)
+FROM employee1 
+GROUP BY jdate
+HAVING SUM(workhour) >= 40;
 ```
 
 **Output:**
 
-
-![Screenshot 2025-04-29 172703](https://github.com/user-attachments/assets/ed11db98-a58b-4cb2-934b-49a26899d26b)
-
+![image](https://github.com/user-attachments/assets/1c6e000f-0cb5-41f5-9358-3ca1f6c4d36a)
 
 **Question 10**
 ---
-Write the SQL query that achieves the grouping of data by occupation, calculates the average work hours for each occupation, and includes only those occupations where the average work hour falls between 10 and 12.
+-- Write the SQL query that achieves the grouping of data by age, calculates the minimum income for each age group, and includes only those age groups where the minimum income is less than 400,000.
 
-Sample table: employee1
-
-```
-occupation  AVG(workhour)
-----------  -------------
-Business    10.0
-Engineer    12.0
-```
-```
-SELECT
-  occupation,
-  AVG(workhour) AS "AVG(workhour)"
-FROM
-  employee1
-GROUP BY
-  occupation
-HAVING
-  AVG(workhour) BETWEEN 10 AND 12;
+```sql
+-- SELECT age, MIN(income) 
+FROM employee 
+GROUP BY age
+HAVING MIN(income) < 400000;
 ```
 
 **Output:**
 
+![image](https://github.com/user-attachments/assets/803d818b-9d1f-4472-93f6-4eaf2daa37fc)
 
-![Screenshot 2025-04-29 172754](https://github.com/user-attachments/assets/2feda0d6-0e59-4af8-a0b6-15ea0c411c22)
+SEB:
 
+<img width="1008" height="158" alt="image" src="https://github.com/user-attachments/assets/146fc103-f804-4ff4-8f6f-cff63001ee81" />
 
 
 

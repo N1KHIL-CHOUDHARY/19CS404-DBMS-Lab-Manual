@@ -1,5 +1,8 @@
 # Experiment 2: DDL Commands
 
+## NAME: Nikhil H
+## REG.NO: 212224040219
+
 ## AIM
 To study and implement DDL commands and different types of constraints.
 
@@ -66,7 +69,7 @@ CREATE TABLE Table_Name (
 Specifies a condition that each row must satisfy.
 Syntax:
 ```sql
-CREATE TABLE Table_Name(
+CREATE TABLE Table_Name (
   column_name data_type(size) CHECK (logical_expression)
 );
 ```
@@ -104,185 +107,193 @@ CREATE TABLE Table_Name (
 ```
 
 **Question 1**
-
-<img width="826" height="465" alt="image" src="https://github.com/user-attachments/assets/553409ff-be62-4338-a809-0c84707d6687" />
-
+--
+Create a new table named item with the following specifications and constraints:
+1. item_id as TEXT and as primary key.
+2. item_desc as TEXT.
+3. rate as INTEGER.
+4. icom_id as TEXT with a length of 4.
+5. icom_id is a foreign key referencing com_id in the company table.
+6. The foreign key should cascade updates and deletes.
+7. item_desc and rate should not accept NULL.
 
 ```sql
-INSERT INTO Customers(ID,NAME,AGE,ADDRESS,SALARY)VALUES
-(1,'Ramesh',32 ,'Ahmedabad',2000),
-(2,'Khilan',25,'Delhi',1500),
-(3,'Kaushik',23,'Kota',2000);
-
+CREATE TABLE item(
+item_id TEXT,
+item_desc TEXT,
+rate INT,
+icom_id TEXT CHECK (LENGTH(icom_id)=4),
+FOREIGN KEY (icom_id) REFERENCES company (com_id) ON UPDATE CASCADE ON DELETE CASCADE
+);
 ```
 
 **Output:**
 
-<img width="1186" height="232" alt="image" src="https://github.com/user-attachments/assets/2fc25eac-2404-4744-8a29-2bb7370c32ce" />
-
+![image](https://github.com/user-attachments/assets/1774f61b-0ad2-42ac-bc90-d6898da90d77)
 
 **Question 2**
 ---
-<img width="1066" height="253" alt="image" src="https://github.com/user-attachments/assets/0bdac749-5509-42c7-b36c-a1737947a51e" />
-
+Insert all books from Out_of_print_books into Books
+Table attributes are ISBN, Title, Author, Publisher, YearPublished
 
 ```sql
-INSERT INTO Student_details(RollNo,Name,Gender,Subject,MARKS)VALUES
-(201,'David Lee','M ','Physics',92);
+INSERT INTO Books (ISBN, Title, Author, Publisher, YearPublished)
+SELECT ISBN, Title, Author, Publisher, YearPublished FROM Out_of_print_books;
 ```
 
 **Output:**
 
-<img width="1190" height="265" alt="image" src="https://github.com/user-attachments/assets/aa3131fd-0347-495f-857a-35651cd422bb" />
-
+![image](https://github.com/user-attachments/assets/05087595-b4ac-48de-8a33-521e17655bcf)
 
 **Question 3**
 ---
-<img width="1042" height="371" alt="image" src="https://github.com/user-attachments/assets/82f096e6-5232-4dac-9549-35118f5baeb5" />
-
+Write a SQL query to Add a new column Country as text in the Student_details table.
+Sample table: Student_details
 
 ```sql
-INSERT INTO Books(ISBN, Title, Author, Publisher, YearPublished)
-SELECT ISBN, Title, Author, Publisher, YearPublished
-FROM  Out_of_print_books;
+ALTER TABLE Student_details ADD Country TEXT;
 ```
 
 **Output:**
 
-<img width="1197" height="278" alt="image" src="https://github.com/user-attachments/assets/e9693475-e560-4344-bd6c-94f1556bba8c" />
+![image](https://github.com/user-attachments/assets/38ef77ff-2e53-49c0-bedf-dfb45a5792d0)
 
 **Question 4**
 ---
-<img width="949" height="479" alt="image" src="https://github.com/user-attachments/assets/9208595a-fbcb-4893-9cc1-3c534567a5a4" />
-
+Create a table named Locations with the following columns:
+- LocationID as INTEGER
+- LocationName as TEXT
+- Address as TEXT
 
 ```sql
-ALTER TABLE books
-ADD COLUMN ISBN varchar(30);
-ALTER TABLE books
-ADD COLUMN domain_dept varchar(30);
+CREATE TABLE Locations(
+LocationID INTEGER,
+LocationName TEXT,
+Address TEXT
+);
 ```
 
 **Output:**
 
-<img width="1192" height="396" alt="image" src="https://github.com/user-attachments/assets/55959750-8793-4ec6-a9c3-1c72d1d03e90" />
+![image](https://github.com/user-attachments/assets/84a70964-fbd7-40c4-b3c1-9c911755227a)
+
 
 **Question 5**
----
-<img width="1222" height="321" alt="image" src="https://github.com/user-attachments/assets/002f72bd-0d84-40ad-9a2f-13039100ee45" />
-
+Insert a book with ISBN 978-1234567890, Title Data Science Essentials, Author Jane Doe, Publisher TechBooks, and Year 2024 into the Books table.
 
 ```sql
-ALTER TABLE Student_details
-ADD column Email VARCHAR(50) ;
-ALTER TABLE Student_details
-ADD column MARKS default 0;
+INSERT INTO Books (ISBN,Title,Author,Publisher,Year)
+VALUES ('978-1234567890','Data Science Essentials','Jane Doe','TechBooks',2024);
 ```
 
 **Output:**
 
-<img width="1203" height="233" alt="image" src="https://github.com/user-attachments/assets/33d5efff-901a-4c19-83b4-ee95c5534f52" />
+![image](https://github.com/user-attachments/assets/a8b66909-54eb-4230-8331-75d1d019d542)
 
 **Question 6**
 ---
-<img width="967" height="458" alt="image" src="https://github.com/user-attachments/assets/bbf89ff2-67ae-4412-ad23-e80febb895e4" />
-
+In the Student_details table, insert a student record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
 
 ```sql
-Create table Employees
-(
-EmployeeID INTEGER,
-FirstName TEXT,
-LastName TEXT,
-HireDate DATE
-);
+INSERT INTO Student_details (RollNo,Name,Gender,Subject,MARKS)
+VALUES (205,'Olivia Green','F',NULL,NULL),
+(207,'Liam Smith','M','Mathematics',85),
+(208,'Sophia Johnson','F','Science',NULL);
 ```
 
 **Output:**
 
-<img width="1193" height="307" alt="image" src="https://github.com/user-attachments/assets/a29e3537-6fc6-4360-b8d6-8c99371c3e27" />
+![image](https://github.com/user-attachments/assets/3df68d8f-9f18-477e-a9e8-396c3d78ff85)
 
 **Question 7**
 ---
-<img width="902" height="377" alt="image" src="https://github.com/user-attachments/assets/977db7e1-46db-4110-92d9-d59245a7f990" />
+Create a table named Bonuses with the following constraints:
+- BonusID as INTEGER should be the primary key.
+- EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+- BonusAmount as REAL should be greater than 0.
+- BonusDate as DATE.
+- Reason as TEXT should not be NULL.
 
 ```sql
-Create table Products
-(
-ProductID primary key,
-ProductName NOT NULL,
-Price real check(Price>0),
-Stock integer check(Stock>=0)
+CREATE TABLE Bonuses(
+BonusID INT PRIMARY KEY,
+EmployeeID INT,
+BonusAmount REAL,
+BonusDate DATE,
+Reason TEXT NOT NULL,
+FOREIGN KEY (EmployeeID) REFERENCES Employees (EmployeeID),
+CHECK (BonusAmount>0)
 );
 ```
 
 **Output:**
 
-<img width="1177" height="282" alt="image" src="https://github.com/user-attachments/assets/15434ae9-3e48-4185-b0c5-57f014a6336f" />
+![image](https://github.com/user-attachments/assets/1968df0f-cc32-4e01-886e-77891ce00096)
 
 **Question 8**
 ---
-<img width="1047" height="466" alt="image" src="https://github.com/user-attachments/assets/93645aa8-e235-451d-a9ac-aec03ca4a4ec" />
-
+create a table named jobs including columns job_id, job_title, min_salary and max_salary, and make sure that, the default value for job_title is blank and min_salary is 8000 and max_salary is NULL will be entered automatically at the time of insertion if no value assigned for the specified columns.
 
 ```sql
-Create table item 
-(
-item_id TEXT primary key,
-item_desc TEXT,
-rate INTEGER,
-icom_id TEXT  check(length(icom_id)=4),
-foreign key(icom_id) references company (com_id)
-on update cascade
-on delete cascade
+CREATE TABLE jobs(
+job_id INTEGER,
+job_title TEXT DEFAULT 'black',
+min_salary INT DEFAULT 8000,
+max_salary INT DEFAULT NULL
 );
 ```
 
 **Output:**
 
-<img width="1196" height="363" alt="image" src="https://github.com/user-attachments/assets/70212230-542c-4dfb-93fa-46032aeb0ce9" />
+![image](https://github.com/user-attachments/assets/b030eb34-2af0-48ab-aef2-19fd5cb15e1f)
 
 **Question 9**
 ---
-<img width="1224" height="363" alt="image" src="https://github.com/user-attachments/assets/e5388ace-4f82-40e8-9299-67a14abdb3e7" />
-
+Write an SQL Query to add the attributes designation, net_salary, and dob to the Companies table with the following data types:
+- designation as VARCHAR(50)
+- net_salary as NUMBER
+- dob as DATE
 
 ```sql
-Create table ProjectAssignments
-(
-AssignmentID INTEGER primary key,
-EmployeeID INTEGER,
-ProjectID INTEGER,
-AssignmentDate DATE NOT NULL,
-foreign key(EmployeeID) references Employees(EmployeeID)
-foreign key(ProjectID) references Projects(ProjectID)
-);
+ALTER TABLE Companies ADD designation varchar(50);
+ALTER TABLE Companies ADD net_salary number;
+ALTER TABLE Companies ADD dob date;
 ```
 
 **Output:**
 
-<img width="1030" height="245" alt="image" src="https://github.com/user-attachments/assets/242e4c21-7a74-4fdd-9ab5-37a853953416" />
+![image](https://github.com/user-attachments/assets/2a20a718-9410-46ea-bb24-44066b1d1484)
 
 **Question 10**
 ---
-<img width="1223" height="396" alt="image" src="https://github.com/user-attachments/assets/ad93caa4-0abb-43cd-95e3-c8fbd0b84d57" />
+Create a table named Invoices with the following constraints:
+- InvoiceID as INTEGER should be the primary key.
+- InvoiceDate as DATE.
+- Amount as REAL should be greater than 0.
+- DueDate as DATE should be greater than the InvoiceDate.
+- OrderID as INTEGER should be a foreign key referencing Orders(OrderID).
 
-
-```sql--
-Create table Department
-(
-DepartmentID INTEGER primary key,
-DepartmentName TEXT unique not NULL,
-Location TEXT
+```sql
+CREATE TABLE Invoices(
+InvoiceID INTEGER PRIMARY KEY,
+InvoiceDate DATE,
+Amount REAL,
+DueDate DATE,
+OrderID INTEGER,
+FOREIGN KEY (OrderID) REFERENCES Orders (OrderID),
+CHECK (LENGTH(Amount)>0),
+CHECK (DueDate>InvoiceDate)
 );
 ```
 
 **Output:**
 
-<img width="1162" height="292" alt="image" src="https://github.com/user-attachments/assets/8cc4939b-1b97-402d-8724-05f88e05a3f6" />
-
-
+![image](https://github.com/user-attachments/assets/73e63eec-ec6c-4a3f-a1c9-c065057421c2)
 
 ## RESULT
 Thus, the SQL queries to implement different types of constraints and DDL commands have been executed successfully.
+
+## Module 1 Grade:
+
+<img width="1502" height="189" alt="image" src="https://github.com/user-attachments/assets/07b423f3-f372-4312-897f-e4d77a173b17" />
 
