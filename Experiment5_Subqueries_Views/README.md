@@ -38,124 +38,137 @@ DROP VIEW view_name;
 
 **Question 1**
 --
--- Paste Question 1 here
+![image](https://github.com/user-attachments/assets/7e18cbd1-ce85-41e2-aa77-1e1ef74f70de)
 
+**Program:**
 ```sql
--- Paste your SQL code below for Question 1
+select * from medications where dosage=(select min(dosage) from medications);
 ```
 
 **Output:**
+![image](https://github.com/user-attachments/assets/c1aef925-2de4-4a3e-9647-2c5234a89a4b)
 
-![Output1](output.png)
 
 **Question 2**
 ---
--- Paste Question 2 here
+![image](https://github.com/user-attachments/assets/316c35ad-7645-471a-b513-82128ef2246a)
 
+**Program:**
 ```sql
--- Paste your SQL code below for Question 2
+select name,city from customer where city in (select city from customer where id in (3,7));
 ```
 
 **Output:**
+![image](https://github.com/user-attachments/assets/a13dcaae-bd8c-49ba-930d-d5fd34f80a68)
 
-![Output2](output.png)
 
 **Question 3**
 ---
--- Paste Question 3 here
+![image](https://github.com/user-attachments/assets/c99a954e-3477-4bbe-adb5-90d467237be4)
 
+**Program:**
 ```sql
--- Paste your SQL code below for Question 3
+select * from medications where dosage=(select max(dosage) from medications);
 ```
 
 **Output:**
+![image](https://github.com/user-attachments/assets/2186c8f4-829a-44d0-8da9-c5240c46ad56)
 
-![Output3](output.png)
 
 **Question 4**
 ---
--- Paste Question 4 here
+![image](https://github.com/user-attachments/assets/1c762597-41fd-4aa3-bd8d-b835d370c158)
 
+**Program:**
 ```sql
--- Paste your SQL code below for Question 4
+select * from departments where length(department_name)>(select avg(length(department_name)) from departments);
 ```
 
 **Output:**
+![image](https://github.com/user-attachments/assets/80f22f5d-e66f-46a6-ab13-3d0ac87feeec)
 
-![Output4](output.png)
 
 **Question 5**
 ---
--- Paste Question 5 here
+![image](https://github.com/user-attachments/assets/eed5d9db-5f80-4e37-a0a1-cd7a5b416b4b)
 
+**Program:**
 ```sql
--- Paste your SQL code below for Question 5
+select * from orders where purch_amt > (select avg(purch_amt) from orders where ord_date='2012-10-10');
 ```
 
 **Output:**
+![image](https://github.com/user-attachments/assets/ae644a5c-1872-432c-b52f-9fb59661ec7e)
 
-![Output5](output.png)
 
 **Question 6**
 ---
--- Paste Question 6 here
+![image](https://github.com/user-attachments/assets/d782ea69-48e5-4ffb-a59b-b50cd6b55ac3)
 
+**Program:**
 ```sql
--- Paste your SQL code below for Question 6
+select * from customers where salary=1500;
 ```
 
 **Output:**
+![image](https://github.com/user-attachments/assets/152ef40f-0ecc-45b6-a7b0-47f9bf295a95)
 
-![Output6](output.png)
 
 **Question 7**
 ---
--- Paste Question 7 here
+![image](https://github.com/user-attachments/assets/b20f144e-005e-477e-bae8-cf4cc3a19ead)
 
+**Program:**
 ```sql
--- Paste your SQL code below for Question 7
+select name from customer where phone in (select phone from customer group by phone having count(*)=1);
 ```
 
 **Output:**
+![image](https://github.com/user-attachments/assets/7d990ebf-91e8-41e4-b4de-fbc068101538)
 
-![Output7](output.png)
 
 **Question 8**
 ---
--- Paste Question 8 here
+![image](https://github.com/user-attachments/assets/37bd1a9b-e841-40e5-9428-1a308b1b03fe)
 
+**Program:**
 ```sql
--- Paste your SQL code below for Question 8
+select * from employee where age < (select avg(age) from employee where income>250000);
 ```
 
 **Output:**
+![image](https://github.com/user-attachments/assets/e4cfcd23-f1f5-4090-a17b-517c365e2631)
 
-![Output8](output.png)
 
 **Question 9**
 ---
--- Paste Question 9 here
+![image](https://github.com/user-attachments/assets/5f9a89ab-2819-47f4-b227-96fa22237cb8)
 
+**Program:**
 ```sql
--- Paste your SQL code below for Question 9
+select * from customers where salary>1500;
 ```
 
 **Output:**
+![image](https://github.com/user-attachments/assets/7d607947-8a9d-466a-aae0-8e710d22ca06)
 
-![Output9](output.png)
 
 **Question 10**
 ---
--- Paste Question 10 here
+![image](https://github.com/user-attachments/assets/1337f0aa-8c5f-4b5b-9f83-6fcea6b1b7b8)
 
+**Program:**
 ```sql
--- Paste your SQL code below for Question 10
+SELECT grade, COUNT(*) 
+FROM customer 
+WHERE grade > (SELECT AVG(grade) 
+               FROM customer 
+               WHERE city = 'New York')
+GROUP BY grade;
+
 ```
-
-**Output:**
-
-![Output10](output.png)
 
 
 ## RESULT
 Thus, the SQL queries to implement subqueries and views have been executed successfully.
+
