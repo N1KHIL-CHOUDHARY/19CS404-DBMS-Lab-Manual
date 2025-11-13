@@ -3,73 +3,59 @@
 ## NAME: Nikhil H
 ## REG.NO: 212224040219
 
-## 🎯 Objective:
-To understand and apply the concepts of ER modeling by creating an ER diagram for a real-world application.
+## Objective
+To understand and apply ER modeling concepts by creating ER diagrams for real-world applications.
 
-## 📚 Purpose:
-The purpose of this workshop is to gain hands-on experience in designing ER diagrams that visually represent the structure of a database including entities, relationships, attributes, and constraints.
-
----
-
-## 🧪 Choose One Scenario:
-
-### 🔹 Scenario 1: University Database
-Design a database to manage students, instructors, programs, courses, and student enrollments. Include prerequisites for courses.
-
-**User Requirements:**
-- Academic programs grouped under departments.
-- Students have admission number, name, DOB, contact info.
-- Instructors with staff number, contact info, etc.
-- Courses have number, name, credits.
-- Track course enrollments by students and enrollment date.
-- Add support for prerequisites (some courses require others).
+## Purpose
+Gain hands-on experience in designing ER diagrams that represent database structure including entities, relationships, attributes, and constraints.
 
 ---
 
-### 🔹 Scenario 2: Hospital Database
-Design a database for patient management, appointments, medical records, and billing.
+# Scenario : City Library Event & Book Lending System
 
-**User Requirements:**
-- Patient details including contact and insurance.
-- Doctors and their departments, contact info, specialization.
-- Appointments with reason, time, patient-doctor link.
-- Medical records with treatments, diagnosis, test results.
-- Billing and payment details for each appointment.
+**Business Context:**  
+The Central Library wants to manage book lending and cultural events.
 
----
+**Requirements:**  
+- Members borrow books, with loan and return dates tracked.  
+- Each book has title, author, and category.  
+- Library organizes events; members can register.  
+- Each event has one or more speakers/authors.  
+- Rooms are booked for events and study.  
+- Overdue fines apply for late returns.
 
-## 📝 Tasks:
-1. Identify entities, relationships, and attributes.
-2. Draw the ER diagram using any tool (draw.io, dbdiagram.io, hand-drawn and scanned).
-3. Include:
-   - Cardinality & participation constraints
-   - Prerequisites for University OR Billing for Hospital
-4. Explain:
-   - Why you chose the entities and relationships.
-   - How you modeled prerequisites or billing.
+### ER Diagram:
+<img width="752" height="422" alt="image" src="https://github.com/user-attachments/assets/fa2a2219-f74a-4833-890d-bcc1bb10e040" />
 
-# ER Diagram Submission - Student Name
 
-## Scenario Chosen:
-University / Hospital (choose one)
+### Entities and Attributes
 
-## ER Diagram:
-![ER Diagram](er_diagram.png)
+| Entity | Attributes (PK, FK) | Notes |
+|--------|--------------------|-------|
+|MEMBER  |Member_ID (PK), Name, Membership_Type, Start_Date            |Tracks all gym members       |
+|PROGRAM |Program_ID (PK), Program_Name, Type                          |Yoga, Zumba, Weight Training |
+|TRAINER |Trainer_ID (PK), Name, Specialization                    |A trainer may take multiplE programs|
+|SESSION |Session_ID (PK), Member_ID (FK), Trainer_ID (FK), Date, Time |For personal training sessions |
+|ATTENDANCE|Attendance_ID (PK), Session_ID (FK), Status (Present/Absent)|Records session attendance   |
 
-## Entities and Attributes:
-- Entity1: Attributes
-- Entity2: Attributes
-...
 
-## Relationships and Constraints:
-- Relationship1 (Cardinality, Participation)
-- Relationship2 (Cardinality, Participation)
-...
+### Relationships and Constraints
 
-## Extension (Prerequisite / Billing):
-- Explain how you modeled prerequisites or billing.
+| Relationship | Cardinality | Participation | Notes |
+|--------------|------------|---------------|-------|
+|Member–Program (Joins)      |M:N |Partial|A member can join many programs       |
+|Program–Trainer (Assigned)  |M:N |Total  |Programs can have multiple trainers       |
+|Session–Attendance          |1:M |Partial|Each session must have attendance record       |
 
-## Design Choices:
-Brief explanation of why you chose certain entities, relationships, and assumptions
+### Assumptions
 
-## RESULT
+Membership type determines allowed programs but not restricted in ER model. -Personal training sessions are optional. -Payments cover both membership fees and session fees.
+
+
+## Instructions for Students
+
+1. Complete **all three scenarios** (A, B, C).  
+2. Identify entities, relationships, and attributes for each.  
+3. Draw ER diagrams using **draw.io / diagrams.net** or hand-drawn & scanned.  
+4. Fill in all tables and assumptions for each scenario.  
+5. Export the completed Markdown (with diagrams) as **a single PDF**
