@@ -8,8 +8,8 @@ Gain hands-on experience in designing ER diagrams that represent database struct
 
 ---
 
-Reg No 212224040219
-Name Nikhil H
+## Reg No 212224040219
+## Name Nikhil H
 
 # Scenario A: City Fitness Club Management
 
