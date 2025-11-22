@@ -348,5 +348,5 @@ Thus, the SQL queries to implement subqueries and views have been executed succe
 
 ## Module 4 Score
 
-<img width="1022" height="93" alt="image" src="https://github.com/user-attachments/assets/d92d925d-08c9-49a6-8996-52b26f8ad11b" />
+<img width="1377" height="78" alt="{2B06A1E0-1198-4330-A53A-4D381282B3F0}" src="https://github.com/user-attachments/assets/3369b0d3-9fef-4388-8313-38f190fca342" />
 
