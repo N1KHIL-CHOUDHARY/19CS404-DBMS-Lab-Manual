@@ -165,3 +165,6 @@ A popular restaurant wants to manage reservations, orders, and billing.
 
 ## Result 
   Thus, the ER diagram was created with entities and attributes, Relationships and constraints and assumptions successfully.
+
+  <img width="1421" height="85" alt="image" src="https://github.com/user-attachments/assets/147093e6-beea-4ba6-8c3b-4e015e5ef01b" />
+
